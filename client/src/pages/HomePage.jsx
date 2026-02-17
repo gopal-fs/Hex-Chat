@@ -5,10 +5,15 @@ import RightSidebar from '../components/RightSidebar'
 import {Moon, Sun} from "lucide-react"
 import { LightContext } from '../context/LightMode'
 import { ChatContext } from '../context/ChatContext'
+import { useMediaQuery } from "react-responsive";
 
 const HomePage = () => {
   const {selectedUser}=useContext(ChatContext)
   const {mode,setMode}=useContext(LightContext)
+  
+  const isMobile556 = useMediaQuery({ 
+    query: "(max-width: 556px)" 
+  });
   
 
   
@@ -39,10 +44,15 @@ const HomePage = () => {
 
       </div>
 
-      <div className='absolute md:top-2 right-6 xl:top-10 xl:right-20 max-md:top-4 max-sm:right-17'>
+      {(!selectedUser && isMobile556)  && <div className='absolute md:top-2 right-6 xl:top-10 xl:right-20 max-md:top-7 max-sm:right-17'>
         {mode==="light"?<Moon onClick={()=>setMode("dark")} size={30} className="cursor-pointer" />:<Sun  onClick={()=>setMode("light")} className='cursor-pointer' size={30} fill='#ffffff' />}
       
-      </div>
+      </div>}
+
+      {(!selectedUser && !isMobile556) && <div className='absolute md:top-2 right-6 xl:top-10 xl:right-20 max-md:top-7 max-sm:right-17'>
+        {mode==="light"?<Moon onClick={()=>setMode("dark")} size={30} className="cursor-pointer" />:<Sun  onClick={()=>setMode("light")} className='cursor-pointer' size={30} fill='#ffffff' />}
+      
+      </div>}
     </div>
   )
 }
