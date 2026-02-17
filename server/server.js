@@ -59,3 +59,5 @@ await connectMongo();
 if(process.env.NODE_ENV!=="production"){
     server.listen(3000,()=>console.log("Running"))
 }
+
+export default server;
