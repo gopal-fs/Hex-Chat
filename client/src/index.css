@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss";
+
+*{
+    font-family:"Outfit", sans-serif;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+body{
+    margin: 0;
+}
+
+:root {
+
+    /* Backgrounds */
+    --bg-primary: #f8f9fc;
+    --bg-secondary: #ffffff;
+    --bg-chat: #f1f3f9;
+  
+    /* Text */
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+  
+    /* Brand */
+    --color-primary: #7c3aed;       
+    --color-primary-hover: #6d28d9;
+    --color-accent: #06b6d4;        /* cyan */
+  
+    /* Buttons */
+    --btn-primary-bg: #7c3aed;
+    --btn-primary-text: #ffffff;
+    --btn-primary-hover: #6d28d9;
+  
+    --btn-secondary-bg: #e5e7eb;
+    --btn-secondary-text: #374151;
+  
+    /* Borders */
+    --border-light: #e5e7eb;
+    --border-medium: #d1d5db;
+  
+    /* Chat Bubbles */
+    --chat-sent-bg: #7c3aed;
+    --chat-sent-text: #ffffff;
+  
+    --chat-received-bg: #e5e7eb;
+    --chat-received-text: #111827;
+  }
+  
+
+  .dark {
+
+    /* Backgrounds */
+    --bg-primary: #0f172a;      /* deep navy */
+    --bg-secondary: #1e293b;
+    --bg-chat: #111827;
+  
+    /* Text */
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+  
+    /* Brand */
+    --color-primary: #8b5cf6;
+    --color-primary-hover: #7c3aed;
+    --color-accent: #22d3ee;
+  
+    /* Buttons */
+    --btn-primary-bg: #8b5cf6;
+    --btn-primary-text: #ffffff;
+    --btn-primary-hover: #7c3aed;
+  
+    --btn-secondary-bg: #374151;
+    --btn-secondary-text: #f3f4f6;
+  
+    /* Borders */
+    --border-light: #334155;
+    --border-medium: #475569;
+  
+    /* Chat Bubbles */
+    --chat-sent-bg: #7c3aed;
+    --chat-sent-text: #ffffff;
+  
+    --chat-received-bg: #1f2937;
+    --chat-received-text: #f3f4f6;
+  }
+  
