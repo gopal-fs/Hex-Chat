@@ -9,7 +9,7 @@ export const LightContext= createContext(null)
 export const LightProvider=({children})=>{
     
     const [mode, setMode] = useState(() => {
-        return localStorage.getItem("mode") || "light";
+        return localStorage.getItem("mode") || "dark";
       });
           useEffect(()=>{
         
