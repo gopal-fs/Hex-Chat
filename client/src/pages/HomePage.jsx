@@ -39,7 +39,7 @@ const HomePage = () => {
 
       </div>
 
-      <div className='absolute md:top-2 right-6 xl:top-10 xl:right-20 max-md:top-7 max-sm:right-22'>
+      <div className='absolute md:top-2 right-6 xl:top-10 xl:right-20 max-md:top-5 max-sm:right-17'>
         {mode==="light"?<Moon onClick={()=>setMode("dark")} size={30} className="cursor-pointer" />:<Sun  onClick={()=>setMode("light")} className='cursor-pointer' size={30} fill='#ffffff' />}
       
       </div>
