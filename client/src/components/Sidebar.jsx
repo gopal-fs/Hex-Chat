@@ -7,17 +7,19 @@ import { ChatContext } from '../context/ChatContext'
 
 const Sidebar = () => {
   const navigate = useNavigate()
-  const {logout,onlineUsers}=useContext(AuthContext)
-  const {selectedUser,setSelectedUser,users,getUsers,unSeenMessages,setUnseenMessages}=useContext(ChatContext);
-  const [input,setInput]=useState("");
+  const { logout, onlineUsers } = useContext(AuthContext)
+  const { selectedUser, setSelectedUser, users, getUsers, unSeenMessages, setUnseenMessages } = useContext(ChatContext);
+  const [input, setInput] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
 
-  const filteredUsers=input?users.filter((user)=>user.fullName.toLowerCase().includes(input.toLowerCase())):users;
 
-  useEffect(()=>{
+  const filteredUsers = input ? users.filter((user) => user.fullName.toLowerCase().includes(input.toLowerCase())) : users;
+
+  useEffect(() => {
 
     getUsers();
 
-  },[onlineUsers]);
+  }, [onlineUsers]);
   return (
     <div className={`h-full p-5 overflow-y-auto 
     bg-[var(--bg-chat)] 
@@ -29,36 +31,54 @@ const Sidebar = () => {
       <div className='pb-6'>
 
         <div className='flex justify-between items-center'>
-            <div className='flex gap-2 items-center'>
+          <div className='flex gap-2 items-center'>
             <img src="/logos.png" alt='logo' className='max-w-22' />
             <p>Hex Chat</p>
 
-            </div>
-          
-
-          <div className='relative py-2 group'>
-          <EllipsisVertical size={24} className='cursor-pointer opacity-70 hover:opacity-100 transition' />
-            
-
-            <div className='absolute top-full right-0 z-20 w-40 p-4 rounded-lg shadow-lg hidden group-hover:block
-            bg-[var(--bg-secondary)]
-            border border-[var(--border-medium)]
-            text-[var(--text-primary)]'>
-
-              <p 
-                onClick={() => navigate('/profile')} 
-                className='text-sm cursor-pointer hover:text-[var(--color-primary)] transition'>
-                Edit Profile
-              </p>
-
-              <hr className='my-3 border-[var(--border-light)]' />
-
-              <p onClick={()=>logout()} className='text-sm cursor-pointer hover:text-[var(--color-primary)] transition'>
-                Logout
-              </p>
-
-            </div>
           </div>
+
+
+          <div className='relative py-2'>
+
+            <EllipsisVertical
+              size={24}
+              onClick={() => setShowMenu(prev => !prev)}
+              className='cursor-pointer opacity-70 hover:opacity-100 transition'
+            />
+
+            {showMenu && (
+              <div className='absolute top-full right-0 z-20 w-40 p-4 rounded-lg shadow-lg
+    bg-[var(--bg-secondary)]
+    border border-[var(--border-medium)]
+    text-[var(--text-primary)]'>
+
+                <p
+                  onClick={() => {
+                    setShowMenu(false);
+                    navigate('/profile');
+                  }}
+                  className='text-sm cursor-pointer hover:text-[var(--color-primary)] transition'
+                >
+                  Edit Profile
+                </p>
+
+                <hr className='my-3 border-[var(--border-light)]' />
+
+                <p
+                  onClick={() => {
+                    setShowMenu(false);
+                    logout();
+                  }}
+                  className='text-sm cursor-pointer hover:text-[var(--color-primary)] transition'
+                >
+                  Logout
+                </p>
+
+              </div>
+            )}
+
+          </div>
+
         </div>
 
         {/* Search */}
@@ -66,12 +86,12 @@ const Sidebar = () => {
         bg-[var(--bg-secondary)]
         border border-[var(--border-light)]'>
 
-            <Search className="opacity-70" size={20} />
+          <Search className="opacity-70" size={20} />
           {/* <img src={assets.search_icon} alt='search' className='w-4 opacity-60' /> */}
 
           <input
             type='text'
-            onChange={(e)=>setInput(e.target.value)}
+            onChange={(e) => setInput(e.target.value)}
             value={input}
             placeholder='Search User'
             className='bg-transparent outline-none text-sm flex-1
@@ -95,12 +115,12 @@ const Sidebar = () => {
                 [user._id]: 0
               }));
             }}
-            
+
             className={`relative flex items-center gap-3 p-3 rounded-lg cursor-pointer transition
             hover:bg-[var(--border-light)]
-            ${selectedUser?._id === user._id 
-              ? 'bg-[var(--border-light)]' 
-              : ''}`}>
+            ${selectedUser?._id === user._id
+                ? 'bg-[var(--border-light)]'
+                : ''}`}>
 
             <img
               src={user?.profilePic ?? assets.avatar_icon}
@@ -113,7 +133,7 @@ const Sidebar = () => {
                 {user.fullName}
               </p>
 
-              { onlineUsers.includes(user._id) ? (
+              {onlineUsers.includes(user._id) ? (
                 <span className='text-[var(--color-accent)] text-xs'>
                   Online
                 </span>
@@ -124,7 +144,7 @@ const Sidebar = () => {
               )}
             </div>
 
-            {unSeenMessages[user._id]>0 && (
+            {unSeenMessages[user._id] > 0 && (
               <p className='absolute top-3 right-3 text-xs h-5 w-5 rounded-full flex justify-center items-center
               bg-[var(--color-primary)] 
               text-white'>
