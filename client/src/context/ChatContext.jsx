@@ -46,21 +46,30 @@ export const ChatProvider=({children})=>{
       }
       
 
-    const sendMessage=async(messageData)=>{
-        try{
-            const {data}=await axios.post(`/api/messages/send/${selectedUser._id}`,messageData);
-            if(data.success){
-                setMessages((prevMessages)=>[...prevMessages,data.newMessage])
+      const sendMessage = async (messageData) => {
+        try {
+          const token = localStorage.getItem("token"); // or wherever you store it
+      
+          const { data } = await axios.post(
+            `/api/messages/send/${selectedUser._id}`,
+            messageData,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             }
-            else{
-                toast.error(data.message)
-            }
-
+          );
+      
+          if (data.success) {
+            setMessages((prev) => [...prev, data.newMessage]);
+          } else {
+            toast.error(data.message);
+          }
+        } catch (err) {
+          toast.error(err.message);
         }
-        catch(err){
-            toast.error(err.message)
-        }
-    }
+      };
+      
 
     const subscribeToMessage=async()=>{
         if(!socket) return ;
