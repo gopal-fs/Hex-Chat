@@ -2,9 +2,7 @@ import cloudinary from "../configs/cloudinary.js";
 import messageModel from "../models/messageSchema.js";
 import userModel from "../models/userModel.js";
 import { io,userSocketMap } from "../server.js";
-import dotenv from "dotenv"
 
-dotenv.config();
 
 export const getUsersForSidebar=async(req,res)=>{
 

@@ -1,3 +1,5 @@
+import dotenv from "dotenv"
+dotenv.config();
 import express from "express"
 
 import cors from "cors"
@@ -6,7 +8,6 @@ import bcrypt from "bcrypt"
 import {createServer} from "http"
 import { Server } from "socket.io"
 import connectMongo  from "./configs/db.js";
-import dotenv from "dotenv"
 import authRouter from "./routes/authRouter.js"
 import { authToken } from "./middlewares/authToken.js"
 import userRouter from "./routes/userRouter.js"
@@ -14,7 +15,7 @@ import messageRouter from "./routes/messageRouter.js"
 import { Socket } from "dgram"
 
 
-dotenv.config();
+
 
 
 const app=express();
