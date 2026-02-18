@@ -12,11 +12,14 @@ const ChatContainer = () => {
     const {selectedUser,setSelectedUser,messages,sendMessage,setMessages,getMessages}=useContext(ChatContext)
     const {user,onlineUsers}=useContext(AuthContext);
     const [input,setInput]=useState("")
+    const [loading,setLoading]=useState(false);
 
     const handleSendMessage=async(e)=>{
+      setLoading(true);
       e.preventDefault();
       if(input.trim()==="") return null ;
       await sendMessage({text:input.trim()});
+      setLoading(false);
       setInput("");
     }
 
@@ -116,7 +119,7 @@ const ChatContainer = () => {
             </label>
         </div>
 
-        <img onClick={handleSendMessage} src={assets.send_button} className='w-7 cursor-pointer' />
+        <button disabled={loading} onClick={handleSendMessage}><img  src={assets.send_button} className='w-7 cursor-pointer' /></button>
        </div>
 
     </div>

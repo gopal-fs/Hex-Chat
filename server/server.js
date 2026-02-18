@@ -40,7 +40,7 @@ io.on("connection",(socket)=>{
 })
 
 app.use(cors())
-app.use(express.json({limit:"4mb"}))
+app.use(express.json({limit:"20mb"}))
 
 app.use("/api/auth",authRouter);
 app.use("/api",userRouter)
@@ -57,7 +57,7 @@ app.get("/",(req,res)=>res.send("Hi"))
 await connectMongo();
 
 if(process.env.NODE_ENV!=="production"){
-    server.listen(3000,()=>console.log("Running"))
+    server.listen(4000,()=>console.log("Running"))
 }
 
 export default server;

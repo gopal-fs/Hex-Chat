@@ -89,7 +89,6 @@ export const ChatProvider=({children})=>{
     const value={
         messages,users,selectedUser,getUsers,setMessages,sendMessage,setSelectedUser,unSeenMessages,setUnseenMessages,getMessages
     }
-
     
     return (
         <ChatContext.Provider value={value}>

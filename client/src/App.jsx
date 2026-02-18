@@ -20,8 +20,6 @@ const App = () => {
         <Route path='/profile' element={user?<ProfilePage />:<Navigate to='/login' />} />
       </Routes>
       <Toaster position='top-center' reverseOrder={false} />
-      
-
     </div>
 
   )
