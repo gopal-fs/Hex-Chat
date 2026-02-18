@@ -56,8 +56,5 @@ app.get("/protected",authToken,(req,res)=>{
 app.get("/",(req,res)=>res.send("Hi"))
 await connectMongo();
 
-if(process.env.NODE_ENV!=="production"){
-    server.listen(4000,()=>console.log("Running"))
-}
 
-export default server;
+server.listen(3000,()=>console.log("Running"))
