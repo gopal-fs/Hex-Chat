@@ -108,6 +108,7 @@ export const sendMessage=async(req,res)=>{
 
     }
     catch(err){
+        console.log(err);
         console.log(err.message);
         return res.status(401).json({success:false,message:err.message})
     }
