@@ -2,7 +2,9 @@ import cloudinary from "../configs/cloudinary.js";
 import messageModel from "../models/messageSchema.js";
 import userModel from "../models/userModel.js";
 import { io,userSocketMap } from "../server.js";
+import dotenv from "dotenv"
 
+dotenv.config();
 
 export const getUsersForSidebar=async(req,res)=>{
 
@@ -92,15 +94,18 @@ export const sendMessage=async(req,res)=>{
         const senderId=req.user._id;
 
         let imageUrl;
+        console.log("hits1")
         if(image){
             const res=await cloudinary.uploader.upload(image);
             imageUrl=res.secure_url;
         }
+        console.log("hits2")
         const newMessage= await new messageModel({senderId,receiverId,text,image:imageUrl});
         await newMessage.save();
-
+        console.log("hits3")
         const receiverSocketId=userSocketMap[receiverId]
         if(receiverSocketId) io.to(receiverSocketId).emit("newMessage",newMessage)
+            console.log("hits4")
         return res.status(200).json({success:true,newMessage})
 
     }
